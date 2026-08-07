@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BYD Bahía Blanca — Propuesta de Campaña</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#AF0217;
+  --red-bright:#ED1C24;
+  --black:#141414;
+  --offwhite:#F8FAFD;
+  --gray:#313131;
+  --gray-line: rgba(49,49,49,.14);
+  --offwhite-line: rgba(248,250,253,.16);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--black);
+  color:var(--offwhite);
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.deck{
+  position:relative;
+  width:100vw;
+  height:100vh;
+}
+.track{
+  display:flex;
+  height:100%;
+  transition:transform .6s cubic-bezier(.65,0,.35,1);
+  will-change:transform;
+}
+.slide{
+  flex:0 0 100vw;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+/* ---------- backgrounds ---------- */
+.bg-black{background:var(--black); color:var(--offwhite);}
+.bg-offwhite{background:var(--offwhite); color:var(--gray);}
+.bg-red{background:linear-gradient(135deg,#c40420 0%, var(--red) 45%, #7a0110 100%); color:var(--offwhite);}
+
+/* ---------- swirl motif (S) ---------- */
+.swirl{position:absolute; top:0; right:0; height:100%; width:46%; pointer-events:none;}
+.swirl svg{height:100%; width:100%;}
+
+/* ---------- teardrop pattern ---------- */
+.pattern-corner{position:absolute; pointer-events:none; opacity:.10;}
+
+/* ---------- typography ---------- */
+.kicker{
+  font-weight:600; text-transform:uppercase; letter-spacing:.22em;
+  font-size:12.5px; opacity:.72;
+}
+.kicker .dash{display:inline-block; width:22px; height:2px; background:currentColor; margin-right:10px; vertical-align:middle; opacity:.8;}
+h1.title{font-weight:800; line-height:1.04; letter-spacing:-.01em;}
+h2.subtitle{font-weight:300; line-height:1.28;}
+p.body-text{font-weight:300; line-height:1.65; font-size:1.05rem;}
+strong,.sb{font-weight:700;}
+.eb{font-weight:800;}
+
+/* ---------- layout helpers ---------- */
+.slide-inner{
+  position:relative; z-index:2;
+  flex:1;
+  padding:5.4vh 6.2vw 4vh;
+  display:flex; flex-direction:column;
+}
+.content-max{max-width:920px;}
+
+/* ---------- footer ---------- */
+.slide-footer{
+  position:relative; z-index:2;
+  padding:0 6.2vw 3.2vh;
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; opacity:.55;
+}
+.wordmark{font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.02em;}
+
+/* ---------- nav ---------- */
+.nav-dots{
+  position:fixed; bottom:3vh; left:50%; transform:translateX(-50%);
+  display:flex; gap:9px; z-index:50;
+}
+.dot{width:7px; height:7px; border-radius:50%; background:rgba(248,250,253,.35); cursor:pointer; transition:.25s;}
+.dot.active{background:var(--red-bright); width:22px; border-radius:4px;}
+.nav-arrow{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:50;
+  width:44px; height:44px; border-radius:50%; border:1px solid rgba(248,250,253,.28);
+  background:rgba(20,20,20,.35); backdrop-filter:blur(6px);
+  color:var(--offwhite); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:18px; transition:.2s; user-select:none;
+}
+.nav-arrow:hover{background:var(--red); border-color:var(--red);}
+.nav-arrow.prev{left:2.4vw;}
+.nav-arrow.next{right:2.4vw;}
+.nav-arrow.disabled{opacity:0; pointer-events:none;}
+.bg-offwhite .nav-arrow{border-color:rgba(49,49,49,.25); color:var(--gray); background:rgba(255,255,255,.55);}
+.bg-offwhite .dot{background:rgba(49,49,49,.28);}
+.bg-offwhite .dot.active{background:var(--red);}
+
+/* ---------- kicker/text color variants ---------- */
+.bg-offwhite .kicker{color:var(--red);}
+.bg-black .kicker,.bg-red .kicker{color:var(--offwhite);}
+.bg-offwhite .body-text{color:var(--gray);}
+.bg-offwhite h1.title{color:var(--black);}
+.bg-offwhite h2.subtitle{color:var(--gray);}
+
+/* ============ SLIDE 1 — COVER ============ */
+#s1 .slide-inner{justify-content:center;}
+#s1 .cover-kicker{color:var(--offwhite); opacity:.65; margin-bottom:22px;}
+#s1 h1{font-size:clamp(2.4rem,5.6vw,4.6rem); max-width:660px;}
+#s1 h1 .light{font-weight:300; display:block; font-size:.42em; margin-top:14px; line-height:1.3; letter-spacing:0;}
+#s1 h2{font-weight:300; font-size:clamp(1.05rem,1.6vw,1.3rem); max-width:560px; margin-top:22px; opacity:.85;}
+#s1 .tagchips{display:flex; gap:10px; margin-top:38px; flex-wrap:wrap;}
+#s1 .tagchip{
+  border:1px solid var(--offwhite-line); padding:7px 14px; border-radius:100px;
+  font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; opacity:.82;
+}
+
+/* ============ SLIDE 2 — CONTEXTO ============ */
+.two-col{display:grid; grid-template-columns:1.1fr .9fr; gap:6vw; flex:1; align-items:center;}
+.stat-goal{
+  border:1px solid var(--gray-line); border-radius:18px; padding:2.4rem 2rem;
+  background:rgba(175,2,23,.03);
+}
+.stat-goal .num{font-weight:800; font-size:clamp(3rem,5.6vw,4.6rem); color:var(--red); line-height:1;}
+.stat-goal .num sub{font-size:.32em; font-weight:600; color:var(--gray); vertical-align:2px;}
+.stat-goal .lbl{font-size:.85rem; font-weight:600; margin-top:10px; color:var(--gray);}
+.stat-goal .sub{font-size:.85rem; font-weight:300; margin-top:14px; color:var(--gray); opacity:.85;}
+.mini-divider{width:38px; height:3px; background:var(--red); margin:18px 0 20px;}
+
+/* ============ SLIDE 3 — BENCHMARK / BARS ============ */
+.bars{margin-top:2.6rem; display:flex; flex-direction:column; gap:16px;}
+.bar-row{display:grid; grid-template-columns:190px 1fr 108px; align-items:center; gap:16px;}
+.bar-label{font-size:.86rem; font-weight:600;}
+.bar-label .tag-best{
+  display:inline-block; margin-top:4px; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+  background:var(--red); color:var(--offwhite); padding:2px 8px; border-radius:100px; font-weight:700;
+}
+.bar-track{height:11px; background:rgba(49,49,49,.08); border-radius:100px; overflow:hidden;}
+.bar-fill{height:100%; border-radius:100px;}
+.bar-value{font-weight:700; font-size:.92rem; text-align:right;}
+.bar-note{font-size:.72rem; font-weight:300; opacity:.6; text-align:right; margin-top:2px;}
+
+/* ============ SLIDE 4 — GEO ============ */
+.geo-wrap{display:grid; grid-template-columns:.85fr 1.15fr; gap:5vw; flex:1; align-items:center;}
+.geo-hub{
+  width:180px; height:180px; border-radius:50%; border:1.5px solid var(--red);
+  display:flex; align-items:center; justify-content:center; text-align:center; flex-direction:column;
+  position:relative;
+}
+.geo-hub .city{font-weight:800; font-size:1.35rem;}
+.geo-hub .prov{font-size:.72rem; opacity:.65; font-weight:600; text-transform:uppercase; letter-spacing:.08em; margin-top:4px;}
+.geo-ring{position:absolute; border-radius:50%; border:1px solid var(--offwhite-line);}
+.geo-list{display:flex; flex-wrap:wrap; gap:10px;}
+.geo-chip{
+  border:1px solid var(--offwhite-line); padding:10px 16px; border-radius:12px;
+  font-size:.92rem; font-weight:600; display:flex; align-items:center; gap:8px;
+}
+.geo-chip .dot-red{width:6px; height:6px; border-radius:50%; background:var(--red-bright); flex-shrink:0;}
+
+/* ============ SLIDE 5 — ESTRUCTURA ============ */
+.funnel{margin-top:2.2rem; display:flex; flex-direction:column; gap:14px; max-width:640px;}
+.funnel-row{display:flex; align-items:center; gap:18px;}
+.funnel-bar{height:46px; border-radius:10px; display:flex; align-items:center; padding:0 18px; font-weight:700; font-size:.92rem;}
+.funnel-pct{width:52px; font-weight:800; font-size:1rem; text-align:right;}
+.channel-note{
+  margin-top:2.2rem; border-left:3px solid var(--red); padding:12px 18px; font-size:.92rem; font-weight:300; line-height:1.6;
+  background:rgba(175,2,23,.04); border-radius:0 10px 10px 0; max-width:640px;
+}
+
+/* ============ SLIDE 6 — PROYECCION ============ */
+.scenario-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin-top:2rem;}
+.scenario-card{border:1px solid var(--offwhite-line); border-radius:18px; padding:1.7rem 1.7rem 1.5rem;}
+.scenario-card.hi{border-color:rgba(248,250,253,.55); background:rgba(248,250,253,.06);}
+.scenario-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem;}
+.scenario-name{font-weight:800; font-size:1.05rem;}
+.scenario-tag{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:3px 10px; border-radius:100px; background:rgba(248,250,253,.16);}
+.scenario-card.hi .scenario-tag{background:var(--offwhite); color:var(--red);}
+.scenario-desc{font-size:.82rem; font-weight:300; opacity:.8; line-height:1.5; margin-bottom:1.3rem;}
+.scenario-stats{display:flex; flex-direction:column; gap:.85rem;}
+.scenario-stat{display:flex; align-items:baseline; justify-content:space-between; border-top:1px solid rgba(248,250,253,.14); padding-top:.7rem;}
+.scenario-stat:first-child{border-top:none; padding-top:0;}
+.scenario-stat .lbl{font-size:.78rem; font-weight:600; opacity:.72;}
+.scenario-stat .val{font-weight:800; font-size:1.15rem;}
+.scenario-stat .val small{font-weight:600; font-size:.7em; opacity:.75; margin-left:2px;}
+.caveat{
+  margin-top:1.8rem; border:1px dashed rgba(248,250,253,.3); border-radius:14px; padding:1.2rem 1.5rem;
+  font-size:.88rem; font-weight:300; line-height:1.6; max-width:820px; opacity:.9;
+}
+.caveat .h{font-weight:700; opacity:1; display:block; margin-bottom:4px;}
+
+/* ============ SLIDE 7 — PROXIMOS PASOS ============ */
+.steps{display:flex; flex-direction:column; gap:0; margin-top:2rem; max-width:760px;}
+.step{display:grid; grid-template-columns:52px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--gray-line);}
+.step:last-child{border-bottom:none;}
+.step .n{font-weight:800; font-size:1.3rem; color:var(--red); opacity:.55;}
+.step .t{font-weight:700; font-size:1rem; margin-bottom:4px;}
+.step .d{font-weight:300; font-size:.9rem; opacity:.8; line-height:1.5;}
+
+/* ============ SLIDE 8 — CIERRE ============ */
+#s8 .slide-inner{justify-content:center; align-items:flex-start;}
+#s8 h1{font-size:clamp(2rem,4.6vw,3.6rem); max-width:660px;}
+
+@media (max-width:820px){
+  .two-col,.geo-wrap{grid-template-columns:1fr; gap:2rem;}
+  .proj-grid{grid-template-columns:1fr;}
+  .bar-row{grid-template-columns:120px 1fr 80px;}
+  .nav-arrow{width:36px;height:36px;font-size:15px;}
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+  <div class="track" id="track">
+
+    <!-- ============ SLIDE 1 — PORTADA ============ -->
+    <section class="slide bg-black" id="s1">
+      <div class="swirl">
+        <svg viewBox="0 0 500 900" preserveAspectRatio="xMidYMid slice">
+          <path d="M420,-40 C300,60 300,200 400,290 C520,400 520,520 380,610 C260,685 200,760 190,900"
+                fill="none" stroke="#F8FAFD" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+          <path d="M370,-40 C250,70 250,210 355,300 C480,410 480,540 335,635 C210,715 150,790 140,900"
+                fill="none" stroke="#AF0217" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="slide-inner">
+        <div class="kicker cover-kicker"><span class="dash"></span>Shakeagain · Propuesta de campaña</div>
+        <h1 class="title">BYD Bahía Blanca<span class="light">Generación de demanda para la nueva sucursal</span></h1>
+        <h2>Campaña de mensajes directos a WhatsApp en Meta, enfocada en Bahía Blanca y toda la zona sur del país.</h2>
+        <div class="tagchips">
+          <div class="tagchip">Meta Ads</div>
+          <div class="tagchip">WhatsApp</div>
+          <div class="tagchip">1 mes de campaña</div>
+          <div class="tagchip">Zona sur argentina</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark">SHAKEAGAIN</div>
+        <div>01 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 2 — CONTEXTO Y OBJETIVO ============ -->
+    <section class="slide bg-offwhite" id="s2">
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>El contexto</div>
+        <div class="two-col">
+          <div>
+            <h1 class="title" style="font-size:clamp(2rem,3.6vw,3rem); margin-top:14px;">BYD abre sucursal en Bahía Blanca</h1>
+            <div class="mini-divider"></div>
+            <p class="body-text">
+              Es un mercado nuevo para la marca: sin base de seguidores propia de la zona, sin remarketing acumulado
+              y sin historial de leads local. El objetivo de esta primera etapa es instalar la sucursal y generar
+              demanda calificada desde el primer día, priorizando el canal que hoy demuestra la mejor relación
+              entre volumen y costo dentro de todo el mix de BYD.
+            </p>
+          </div>
+          <div class="stat-goal">
+            <div class="num">10<sub>/día</sub></div>
+            <div class="lbl">Leads objetivo</div>
+            <div class="sub">Equivalente a <strong class="sb">~300 leads</strong> en un mes de campaña, vía mensajes directos a WhatsApp.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark">SHAKEAGAIN</div>
+        <div>02 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 3 — POR QUÉ WHATSAPP ============ -->
+    <section class="slide bg-black" id="s3">
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>Por qué este canal</div>
+        <h1 class="title" style="font-size:clamp(2rem,3.6vw,3rem); margin-top:14px; max-width:680px;">
+          WhatsApp es, hoy, el canal más eficiente de BYD
+        </h1>
+        <p class="body-text" style="max-width:680px; margin-top:14px; opacity:.85;">
+          Costo por lead de los últimos dos meses, por canal, dentro de la cuenta de BYD. Es la base real que usamos
+          para proyectar Bahía Blanca — no una estimación de mercado genérica.
+        </p>
+        <div class="bars content-max">
+          <div class="bar-row">
+            <div class="bar-label">Mensajes por WhatsApp<br><span class="tag-best">Canal recomendado</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:24%; background:var(--red-bright);"></div></div>
+            <div><div class="bar-value">$3.780</div><div class="bar-note">por lead</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Conversión en el sitio<br>(Meta)</div>
+            <div class="bar-track"><div class="bar-fill" style="width:29%; background:rgba(248,250,253,.55);"></div></div>
+            <div><div class="bar-value">$4.420</div><div class="bar-note">por lead</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Búsqueda de marca<br>general (Google)</div>
+            <div class="bar-track"><div class="bar-fill" style="width:43%; background:rgba(248,250,253,.55);"></div></div>
+            <div><div class="bar-value">$6.640</div><div class="bar-note">por lead</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Performance Max de<br>marca (Google)</div>
+            <div class="bar-track"><div class="bar-fill" style="width:50%; background:rgba(248,250,253,.55);"></div></div>
+            <div><div class="bar-value">$7.630</div><div class="bar-note">por lead</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Búsqueda de marca<br>específica (Google)</div>
+            <div class="bar-track"><div class="bar-fill" style="width:74%; background:rgba(248,250,253,.35);"></div></div>
+            <div><div class="bar-value">$11.360</div><div class="bar-note">por lead</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark">SHAKEAGAIN</div>
+        <div>03 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 4 — GEO ============ -->
+    <section class="slide bg-offwhite" id="s4">
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>Dónde vamos a estar</div>
+        <h1 class="title" style="font-size:clamp(2rem,3.6vw,3rem); margin-top:14px;">Bahía Blanca y toda la zona sur</h1>
+        <div class="geo-wrap" style="margin-top:1.6rem;">
+          <div style="display:flex; justify-content:center;">
+            <div class="geo-hub" style="border-color:#AF0217;">
+              <div class="geo-ring" style="width:220px; height:220px; border-color:rgba(49,49,49,.14);"></div>
+              <div class="geo-ring" style="width:262px; height:262px; border-color:rgba(49,49,49,.08);"></div>
+              <div class="city" style="color:#141414;">Bahía Blanca</div>
+              <div class="prov">Sede de la sucursal</div>
+            </div>
+          </div>
+          <div class="geo-list">
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>Sur de Buenos Aires</div>
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>La Pampa</div>
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>Neuquén</div>
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>Río Negro</div>
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>Chubut</div>
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>Santa Cruz</div>
+            <div class="geo-chip" style="color:#313131; border-color:rgba(49,49,49,.16);"><span class="dot-red"></span>Tierra del Fuego</div>
+            <p class="body-text" style="margin-top:8px; font-size:.88rem;">Segmentación geográfica en Meta por provincia/partido, con foco de inversión creciente cuanto más cerca de Bahía Blanca.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark" style="color:#141414;">SHAKEAGAIN</div>
+        <div style="color:#313131;">04 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 5 — ESTRUCTURA DE LA CAMPAÑA ============ -->
+    <section class="slide bg-black" id="s5">
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>Cómo se arma</div>
+        <h1 class="title" style="font-size:clamp(2rem,3.6vw,3rem); margin-top:14px; max-width:680px;">
+          100% Meta, apalancando lo que ya funciona
+        </h1>
+        <p class="body-text" style="max-width:680px; margin-top:12px; opacity:.85;">
+          La campaña corre sobre la misma fan page de BYD Dietrich — no arrancamos de cero en reconocimiento de marca
+          ni prueba social. Se suma una porción menor de alcance inicial, necesaria porque la audiencia de la zona sur
+          todavía no fue expuesta a la marca.
+        </p>
+        <div class="funnel">
+          <div class="funnel-row">
+            <div class="funnel-pct">85%</div>
+            <div class="funnel-bar" style="flex:8.5; background:var(--red-bright); color:#141414;">Mensajes directos a WhatsApp — conversión</div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-pct">15%</div>
+            <div class="funnel-bar" style="flex:1.5; background:rgba(248,250,253,.14);">Alcance inicial</div>
+          </div>
+        </div>
+        <div class="channel-note">
+          La distribución exacta se termina de ajustar una vez confirmado el presupuesto — esta proporción es la que,
+          según el historial de la cuenta, mejor balancea volumen de leads con instalación de marca en un mercado nuevo.
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark">SHAKEAGAIN</div>
+        <div>05 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 6 — PROYECCIÓN ============ -->
+    <section class="slide bg-red" id="s6">
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>Proyección</div>
+        <h1 class="title" style="font-size:clamp(2rem,3.6vw,3rem); margin-top:14px; max-width:760px;">
+          Lo que hace falta para llegar a 300 leads
+        </h1>
+        <div class="scenario-grid content-max">
+          <div class="scenario-card">
+            <div class="scenario-head">
+              <div class="scenario-name">Escenario base</div>
+              <div class="scenario-tag">Costo actual</div>
+            </div>
+            <div class="scenario-desc">Sostiene el mismo costo por lead que WhatsApp viene mostrando en la cuenta de BYD desde hace dos meses.</div>
+            <div class="scenario-stats">
+              <div class="scenario-stat"><div class="lbl">Costo por lead</div><div class="val">$3.780</div></div>
+              <div class="scenario-stat"><div class="lbl">Inversión mensual</div><div class="val">$1,13M</div></div>
+              <div class="scenario-stat"><div class="lbl">Ritmo diario</div><div class="val">$37.800<small>/día</small></div></div>
+            </div>
+          </div>
+          <div class="scenario-card hi">
+            <div class="scenario-head">
+              <div class="scenario-name">Escenario conservador</div>
+              <div class="scenario-tag">+20% de resguardo</div>
+            </div>
+            <div class="scenario-desc">Suma un colchón porque Bahía Blanca arranca sin remarketing ni reconocimiento previo de marca en la zona.</div>
+            <div class="scenario-stats">
+              <div class="scenario-stat"><div class="lbl">Costo por lead</div><div class="val">$4.540</div></div>
+              <div class="scenario-stat"><div class="lbl">Inversión mensual</div><div class="val">$1,36M</div></div>
+              <div class="scenario-stat"><div class="lbl">Ritmo diario</div><div class="val">$45.400<small>/día</small></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="caveat">
+          <span class="h">Un dato a tener en cuenta</span>
+          Ambos escenarios apuntan al mismo objetivo — 300 leads en el mes —, la diferencia es cuánto colchón
+          dejamos por ser un mercado nuevo. Proponemos arrancar con el escenario conservador y validar con la
+          inversión real de las primeras 2-3 semanas antes de fijar el número definitivo.
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark">SHAKEAGAIN</div>
+        <div>06 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 7 — PRÓXIMOS PASOS ============ -->
+    <section class="slide bg-offwhite" id="s7">
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>Qué falta definir</div>
+        <h1 class="title" style="font-size:clamp(2rem,3.6vw,3rem); margin-top:14px;">Próximos pasos a evaluar juntos</h1>
+        <div class="steps">
+          <div class="step">
+            <div class="n">01</div>
+            <div>
+              <div class="t">Confirmar presupuesto mensual</div>
+              <div class="d">Para ajustar la proyección de leads y la distribución entre WhatsApp y alcance inicial al número final.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">02</div>
+            <div>
+              <div class="t">Definir fecha de arranque</div>
+              <div class="d">Idealmente alineada a la apertura oficial de la sucursal, para capitalizar el momento de mayor atención.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">03</div>
+            <div>
+              <div class="t">Confirmar recepción de leads</div>
+              <div class="d">Definir si los mensajes de WhatsApp de Bahía Blanca entran al mismo número/equipo comercial que Dietrich o a uno propio de la sucursal.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">04</div>
+            <div>
+              <div class="t">Preparar piezas creativas de apertura</div>
+              <div class="d">Comunicación específica de "BYD llega a Bahía Blanca", adaptada a la fan page existente.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark" style="color:#141414;">SHAKEAGAIN</div>
+        <div style="color:#313131;">07 / 08</div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 8 — CIERRE ============ -->
+    <section class="slide bg-black" id="s8">
+      <div class="swirl">
+        <svg viewBox="0 0 500 900" preserveAspectRatio="xMidYMid slice">
+          <path d="M420,-40 C300,60 300,200 400,290 C520,400 520,520 380,610 C260,685 200,760 190,900"
+                fill="none" stroke="#F8FAFD" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+          <path d="M370,-40 C250,70 250,210 355,300 C480,410 480,540 335,635 C210,715 150,790 140,900"
+                fill="none" stroke="#AF0217" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="slide-inner">
+        <div class="kicker"><span class="dash"></span>Cierre</div>
+        <h1 class="title">Foco en volumen,<br><span style="font-weight:300;">a costo controlado.</span></h1>
+        <p class="body-text" style="max-width:600px; margin-top:20px; opacity:.85;">
+          Con presupuesto y fecha confirmados, esta propuesta queda lista para pasar a media plan y creatividades.
+        </p>
+      </div>
+      <div class="slide-footer">
+        <div class="wordmark">SHAKEAGAIN</div>
+        <div>08 / 08</div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="nav-arrow prev" id="prevBtn">&#8592;</div>
+  <div class="nav-arrow next" id="nextBtn">&#8594;</div>
+  <div class="nav-dots" id="dots"></div>
+</div>
+
+<script>
+(function(){
+  const track = document.getElementById('track');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let idx = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function render(){
+    track.style.transform = 'translateX(' + (-idx * 100) + 'vw)';
+    dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    prevBtn.classList.toggle('disabled', idx === 0);
+    nextBtn.classList.toggle('disabled', idx === slides.length - 1);
+  }
+  function go(i){
+    idx = Math.max(0, Math.min(slides.length - 1, i));
+    render();
+  }
+  prevBtn.addEventListener('click', () => go(idx - 1));
+  nextBtn.addEventListener('click', () => go(idx + 1));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(idx + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(idx - 1);
+  });
+
+  let touchX = null;
+  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
+  document.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 60) go(dx < 0 ? idx + 1 : idx - 1);
+    touchX = null;
+  }, {passive:true});
+
+  render();
+})();
+</script>
+</body>
+</html>
